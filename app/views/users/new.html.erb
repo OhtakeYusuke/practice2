@@ -1,28 +1,3 @@
 <h1>新規ユーザ作成</h1>
 
-<div>
-  <%= form_with model: @user, local: true do |f| %>
-    <div>
-      <%= f.label :name, "名前" %>
-    </div>
-    <div>
-      <%= f.text_field :name %>
-    </div>
-    <div>
-      <%= f.label :email %>
-    </div>
-    <div>
-      <%= f.text_field :email %>
-    </div>
-    <div>
-      <%= f.label :password %>
-    </div>
-    <div>
-      <%= f.password_field :password %>
-    </div>
-    <div>
-      <%= f.submit nil %>
-    </div>
-
-  <% end %>
-</div>
+<%= render partial: "form", locals: {user: @user} %>

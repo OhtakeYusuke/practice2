@@ -6,6 +6,9 @@
 <div>
   <%= @posts.each do |post| %>
     <div>
+      <%= link_to post.user.name, user_path(post.user) %>
+    </div>
+    <div>
       <%= link_to post.name, post_path(post) %>
     </div>
     <div>
