@@ -1,0 +1,18 @@
+<h1>投稿一覧</h1>
+
+<div>
+  <%= link_to '新規投稿', new_post_path %>
+</div>
+<div>
+  <%= @posts.each do |post| %>
+    <div>
+      <%= link_to post.name, post_path(post) %>
+    </div>
+    <div>
+      <%= post.description %>
+    </div>
+    <div>
+      <%= post.updated_at %>
+    </div>
+  <% end %>
+</div>

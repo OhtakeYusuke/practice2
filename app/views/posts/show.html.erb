@@ -1,0 +1,15 @@
+<h1>投稿詳細</h1>
+
+<%= link_to '一覧に戻る', posts_path %>
+<div>
+  <%= @post.name %>
+</div>
+<div>
+  <%= @post.description %>
+</div>
+<div>
+  <%= link_to "編集", edit_post_path(@post) %>
+</div>
+<div>
+  <%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "投稿を削除しますか"}  %>
+</div>
