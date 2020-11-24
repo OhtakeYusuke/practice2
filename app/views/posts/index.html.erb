@@ -4,7 +4,7 @@
   <%= link_to '新規投稿', new_post_path %>
 </div>
 <div>
-  <%= @posts.each do |post| %>
+  <% @posts.each do |post| %>
     <div>
       <%= link_to post.user.name, user_path(post.user) %>
     </div>
