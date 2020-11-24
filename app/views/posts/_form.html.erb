@@ -1,6 +1,10 @@
 
 <%= link_to '一覧に戻る', posts_path %>
 
+<% post.errors.full_messages.each do |message| %>
+  <%= message %>
+<% end %>
+
 <%= form_with model: post, local: true  do |f| %>
   <div>
     <%= f.label :name %>
