@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticated_user, only: [:edit, :update, :destroy, :confirm, :create]
+  before_action :authenticated_user, only: [:edit, :update, :destroy]
 
   def find_post
     @post = Post.find_by(id: params[:id])
@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result
+    @posts = @q.result.page(params[:page]).per(5)
   end
 
   def new
@@ -60,5 +60,11 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:name, :description).merge(user_id: current_user.id)
+  end
+
+  def authenticated_user
+    if current_user.id != Post.find_by(id: params[:id]).user.id
+      redirect_to root_path, notice: "権限がありません"
+    end
   end
 end
