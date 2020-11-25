@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticated_user, only: [:edit, :update, :destroy, :confirm, :create]
 
   def find_post
     @post = Post.find_by(id: params[:id])
