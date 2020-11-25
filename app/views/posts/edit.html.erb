@@ -1,3 +1,27 @@
 <h1>編集</h1>
 
-<%= render partial: "form", locals: { post: @post} %>
+<!-- <%= render partial: "form", locals: { post: @post} %> -->
+
+<%= link_to '一覧に戻る', posts_path %>
+
+<% @post.errors.full_messages.each do |message| %>
+<%= message %>
+<% end %>
+
+<%= form_with model: @post, local: true  do |f| %>
+<div>
+  <%= f.label :name %>
+</div>
+<div>
+  <%= f.text_field :name %>
+</div>
+<div>
+  <%= f.label :description %>
+</div>
+<div>
+  <%= f.text_area :description %>
+</div>
+<div>
+  <%= f.submit nil %>
+</div>
+<% end %>

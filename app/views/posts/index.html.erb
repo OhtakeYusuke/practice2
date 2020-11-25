@@ -4,6 +4,14 @@
   <%= link_to '新規投稿', new_post_path %>
 </div>
 <div>
+  <div>
+    <%= search_form_for @q do |f| %>
+      <%= f.label :name_cont, "名称" %>
+      <%= f.search_field :name_cont %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+
   <% @posts.each do |post| %>
     <div>
       <%= link_to post.user.name, user_path(post.user) %>

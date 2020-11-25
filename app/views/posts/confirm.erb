@@ -1,0 +1,24 @@
+<h1>新規登録確認画面</h1>
+
+<div>
+  <%= form_with model: @post, local: true do |f| %>
+  <div>
+    <%= f.label :name %>
+  </div>
+  <div>
+    <%= @post.name %>
+    <%= f.hidden_field :name %>
+  </div>
+  <div>
+    <%= f.label :description %>
+  </div>
+  <div>
+    <%= @post.description %>
+    <%= f.hidden_field :description %>
+  </div>
+  <div>
+    <%= f.submit "新規登録" %>
+    <%= f.submit "戻る", name: "back" %>
+  </div>
+  <% end %>
+</div>

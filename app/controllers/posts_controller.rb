@@ -6,15 +6,26 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @q = Post.ransack(params[:q])
+    @posts = @q.result
   end
 
   def new
     @post = Post.new
   end
 
+  def confirm
+    @post = Post.new(post_params)
+    render :new unless @post.valid?
+  end
+
   def create
     @post = Post.new(post_params)
+    if params[:back].present?
+      render :new
+      return
+    end
+
     if @post.save
       redirect_to posts_url, notice: "新規投稿完了しました"
     else

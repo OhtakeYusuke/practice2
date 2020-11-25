@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: "posts#index"
-  resources :posts
+  resources :posts do
+    post "confirm", on: :new
+  end
   
   resources :users
 
