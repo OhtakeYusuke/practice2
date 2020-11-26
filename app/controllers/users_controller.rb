@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :permit_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -25,5 +26,11 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password)
+  end
+
+  def permit_user
+    if current_user.id != User.find_by(id: params[:id]).id
+      redirect_to root_path, notice: "他ユーザの編集はできません"
+    end
   end
 end

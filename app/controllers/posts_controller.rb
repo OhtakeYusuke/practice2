@@ -28,6 +28,7 @@ class PostsController < ApplicationController
     end
 
     if @post.save
+      PostMailer.create_mail(@task).deliver_now
       redirect_to posts_url, notice: "新規投稿完了しました"
     else
       render :new
